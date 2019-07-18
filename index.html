@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>19Y</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="长路漫漫为漫作伴">
+<meta property="og:type" content="website">
+<meta property="og:title" content="19Y">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="19Y">
+<meta property="og:description" content="长路漫漫为漫作伴">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="19Y">
+<meta name="twitter:description" content="长路漫漫为漫作伴">
+  
+    <link rel="alternate" href="/atom.xml" title="19Y" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/20333903?v=3&amp;s=460">
+    <h2 class="author">19Y</h2>
+    <h3 class="description">长路漫漫为漫作伴</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>2</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>4</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main">
+  
+    <article id="post-Tomcat配置虚拟路径，使上传文件与服务器分离以及-Context-reloadable-true-的作用" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/18/Tomcat配置虚拟路径，使上传文件与服务器分离以及-Context-reloadable-true-的作用/" class="article-date">
+  <time class="post-time" datetime="2019-07-18T15:02:02.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">18</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/18/Tomcat配置虚拟路径，使上传文件与服务器分离以及-Context-reloadable-true-的作用/">Tomcat配置虚拟路径，使上传文件与服务器分离以及&lt;Context reloadable=true&gt;的作用</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Tomcat配置虚拟路径，使上传文件与服务器分离2016年05月10日 15:52:16 bellus- 阅读数：20160</p>
+<p> 版权声明：知识共享原则。 <a href="https://blog.csdn.net/xiaoyu19910321/article/details/51363679" target="_blank" rel="noopener">https://blog.csdn.net/xiaoyu19910321/article/details/51363679</a></p>
+<p>遇到问题介绍：项目中头像上传，上传图片到服务器。如果使用tomcat下的目录作为上传图片的路径，则每次重启服务器图片将消失<br>遇到问题：使用服务器物理磁盘的D:\upload路径存储文件，访问请求路径的不会映射到希望到的请求。<br>解决：可以使用tomcat的配置文件将某个请求 映射到 物理路径下 ，完成图片的回显。<br>具体操作：使用Tomcat虚拟路径<br>1.修改tomcat的配置文件<br>window环境</p>
+<p>首先找到tomcat目录下conf目录下的server.xml文件</p>
+<p>在server.xml文件中找到<host></host></p>
+<p>然后在其中加上这<br>             <context path="/demo/file" docbase="D:\demo\File\file"></context><br>例如：</p>
+<host name="localhost" appbase="webapps" unpackwars="true" autodeploy="true">
+
+<pre><code>&lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs&quot;
+        prefix=&quot;localhost_access_log.&quot; suffix=&quot;.txt&quot;
+        pattern=&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&quot; /&gt;</code></pre><!-- 下面两条主要是tomcat转发图片请求到相应的电脑物理磁盘位置 -->
+<p><context path="/dajean/uploadpng/" docbase="D:\setup\dajean\uploadpng\"></context></p>
+<pre><code>&lt;/Host&gt;</code></pre><p>tomcat在的请求一般为<a href="http://localhost:8080/demo/file/abc.jpg" target="_blank" rel="noopener">http://localhost:8080/demo/file/abc.jpg</a><br>配置完重启之后，该请求会自动跳转到物理路径D:\demo\File\file下查找。<br>会访问本机的D:\demo\File\file\abc.jpg</p>
+<p>有效解决了存储路径与tomcat路径的分离。</p>
+<context reloadable="true">  
+
+<p>为了在开发时，让tomcat能够自动重新加载，我们修改过的代码和配置，需要对Tomcat的context.xml文件进行设置。<br>在标签中，加上reloadable属性，并且将值设为true</p>
+<context reloadable="true">  
+    <!--注意： reloadable设为true，目的是为了方便开发阶段， 它会影响tomcat性能；当在正式部署服务时，需要改成false -->  
+1
+2
+重启Tomcat时或（tomcat服务开启，重新部署项目时），出现如下异常：
+
+<p>信息: Illegal access: this web application instance has been stopped already.  Could not load java.net.BindException.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.<br>java.lang.IllegalStateException<br>org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1272)<br> at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1232)<br> at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:320)<br> at com.mysql.jdbc.CommunicationsException.<init>(CommunicationsException.java:161)<br> at com.mysql.jdbc.MysqlIO.send(MysqlIO.java:2759)<br> at com.mysql.jdbc.MysqlIO.quit(MysqlIO.java:1410)<br> at com.mysql.jdbc.Connection.realClose(Connection.java:4947)<br> at com.mysql.jdbc.Connection.cleanup(Connection.java:2063)<br> at com.mysql.jdbc.Connection.finalize(Connection.java:3403)<br> at java.lang.ref.Finalizer.invokeFinalizeMethod(Native Method)<br>at java.lang.ref.Finalizer.runFinalizer(Finalizer.java:83)<br>at java.lang.ref.Finalizer.access$100(Finalizer.java:14)</init></p>
+<p>原因是：tomcat重新装载web应用程序失败导致的。当应用程序卸载时，并不会关闭所有的线程。当tomcat已经关闭了其类加载器后，一些线程依然会继续运行，这样就导致出错。不过这个不影响正常使用，不管影响不影响，看到异常信息就不顺眼。</p>
+<p>解决方案：修改tomcat目录下的context.xml,找到<context>标签，把reloadble的属性值设为：reloadable=”false”，即<context reloadable="”false”">。</context></context></p>
+<hr>
+<p>作者：kekeair-zhang<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/ke_zhang_123/article/details/78537652" target="_blank" rel="noopener">https://blog.csdn.net/ke_zhang_123/article/details/78537652</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+</context></context></host>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/18/Tomcat配置虚拟路径，使上传文件与服务器分离以及-Context-reloadable-true-的作用/" data-id="cjy99pw6700006suwrjzxxjmh" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Context/">Context</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reloadable/">reloadable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/配置虚拟路径/">配置虚拟路径</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-hello-world" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/18/hello-world/" class="article-date">
+  <time class="post-time" datetime="2019-07-18T08:33:39.951Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">18</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/18/hello-world/">Hello World</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/18/hello-world/" data-id="cjy99pw6g00026suwitl4zi0a" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">19Y</h1>
+    <h2 class="blog-subtitle">19Y的博客</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/20333903?v=3&amp;s=460">
+    <h2 class="author">19Y</h2>
+    <h3 class="description">长路漫漫为漫作伴</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>2</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>4</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2018 - 2019 19Y<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+  <script src="/plugin/galmenu/GalMenu.js"></script>
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="plugin/galmenu/wulusai.mp3"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
