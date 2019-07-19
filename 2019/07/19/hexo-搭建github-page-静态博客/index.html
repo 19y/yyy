@@ -3,18 +3,22 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>Tag: JAVA | 19Y</title>
+  <title>hexo 搭建github page 静态博客 | 19Y</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="长路漫漫为漫作伴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="19Y">
-<meta property="og:url" content="https://19y.github.io/yyy/tags/JAVA/index.html">
+  <meta name="description" content="hexo 搭建github page静态博客">
+<meta name="keywords" content="git,github page,hexo,博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo 搭建github page 静态博客">
+<meta property="og:url" content="https://19y.github.io/yyy/2019/07/19/hexo-搭建github-page-静态博客/index.html">
 <meta property="og:site_name" content="19Y">
-<meta property="og:description" content="长路漫漫为漫作伴">
+<meta property="og:description" content="hexo 搭建github page静态博客">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://19y.github.io/yyy/img/image.png">
+<meta property="og:updated_time" content="2019-07-19T13:54:49.009Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="19Y">
-<meta name="twitter:description" content="长路漫漫为漫作伴">
+<meta name="twitter:title" content="hexo 搭建github page 静态博客">
+<meta name="twitter:description" content="hexo 搭建github page静态博客">
+<meta name="twitter:image" content="https://19y.github.io/yyy/img/image.png">
   
     <link rel="alternate" href="/atom.xml" title="19Y" type="application/atom+xml">
   
@@ -67,42 +71,93 @@
   </div>
 </div>
 
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap animated rubberBand">
-        <div class="archive-year-wrap">
-          <a href="/yyy/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/yyy/2019/07/19/解决Elasticsearch索引只读-——-FORBIDDEN-12-index-read-only-allow-delete-api/" class="archive-article-date">
-  <time class="post-time" datetime="2019-07-19T12:50:35.000Z" itemprop="datePublished">
+        <section id="main"><article id="post-hexo-搭建github-page-静态博客" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yyy/2019/07/19/hexo-搭建github-page-静态博客/" class="article-date">
+  <time class="post-time" datetime="2019-07-19T13:47:04.000Z" itemprop="datePublished">
     <span class="post-month">7月</span><br/>
     <span class="post-day">19</span>
   </time>
 </a>
-      
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/yyy/2019/07/19/解决Elasticsearch索引只读-——-FORBIDDEN-12-index-read-only-allow-delete-api/">解决Elasticsearch索引只读 —— FORBIDDEN/12/index read-only / allow delete (api)</a>
+    <h1 class="article-title" itemprop="name">
+      hexo 搭建github page 静态博客
     </h1>
   
 
-    </header>
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/yyy/categories/学习/">学习</a>
   </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>hexo 搭建github page静态博客</code></pre><a id="more"></a>
+
+<p>1、安装nodejs（这个自行百度）</p>
+<p>2、npm install -g hexo-cli 安装hexo的cli模块   g代表全局相当于环境变量</p>
+<p>3、去一个目录创建一个英文文件夹 用dos进入该目录下</p>
+<p>4、hexo init <folder>  ————folder是hexo博客项目的文件名字随意取</folder></p>
+<p>5、cd <folder> 进入4操作产生的文件中</folder></p>
+<p>6、修改<folder> 目录下的_config.yml 中的 deploy部分配置</folder></p>
+<pre><code>如下：
+    deploy:
+          type: git   
+          repo: git@github.com:19y/yyy.git   //写你的git项目的上传地址
+          branch: master  </code></pre><p>除了将repo改为你的地址以外其他不用动</p>
+<p>7、 6步骤的时候你可能还没有git仓库–所以去注册一个。。自行百度很简单，跟注册qq一样</p>
+<p>8、 npm install hexo-deployer-git –save  安装hexo 自动push git需要的模块</p>
+<p>9、至此基本都完事了就差部署到github 了</p>
+<p>10、cd <folder>  使用 hexo new post “文章名字，随便取”</folder></p>
+<p>11、 完事后你会在<folder>/source/_posts 发现一个以你刚刚文章名字命名的文件</folder></p>
+<p>12、上边的东西不用动，直接在下边写你要写的文章即可， 文章格式可以在hexo上查看api</p>
+<p>13、写完文章了 cd <folder> 使用 hexo g  </folder></p>
+<p>14、 hexo s  是在本地运行  –这里我们直接使用hexo d  将项目部署到git上</p>
+<p>15、点开你的仓库查看上方有个Setting 点击它 进入新的页面后一直往下滑动发现</p>
+<p>17、当然你会发现主题不好看，你可以去官网上方点击主题，去git 上把喜欢的主题pull来，然后将pull的主题文件放在<br><folder>/themes文件夹中然后修改<folder>/_config.yml中的theme： 修改为你放在themes下的文件夹的名字，其余的配置查看说明<br><img src="/yyy/img/image.png" alt></folder></folder></p>
+<p>18、我觉的大家没必要仔仔细细的把官网的api过个遍，只要能使用常用的功能就可以，比如更换主题，发布文章就行。<br>毕竟结果至上。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://19y.github.io/yyy/2019/07/19/hexo-搭建github-page-静态博客/" data-id="cjya6bu0100048suw2ja6cwra" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/github-page/">github page</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/博客/">博客</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/yyy/2019/07/19/解决Elasticsearch索引只读-——-FORBIDDEN-12-index-read-only-allow-delete-api/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">解决Elasticsearch索引只读 —— FORBIDDEN/12/index read-only / allow delete (api)</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+
 
 </section>
         
