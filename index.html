@@ -41,9 +41,9 @@
     <h2 class="author">19Y</h2>
     <h3 class="description">长路漫漫为漫作伴</h3>
     <div class="count-box">
-      <a href="/yyy/archives"><div><strong>2</strong><br>文章啊啊啊</div></a>
-      <a href="/yyy/categories"><div><strong>0</strong><br>分类啊啊啊</div></a>
-      <a href="/yyy/tags"><div><strong>4</strong><br>标签啊啊啊</div></a>
+      <a href="/yyy/archives"><div><strong>3</strong><br>文章啊啊啊</div></a>
+      <a href="/yyy/categories"><div><strong>2</strong><br>分类啊啊啊</div></a>
+      <a href="/yyy/tags"><div><strong>7</strong><br>标签啊啊啊</div></a>
     </div>
     <ul class="blog-link">
      
@@ -69,6 +69,127 @@
 
         <section id="main">
   
+    <article id="post-解决Elasticsearch索引只读-——-FORBIDDEN-12-index-read-only-allow-delete-api" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yyy/2019/07/19/解决Elasticsearch索引只读-——-FORBIDDEN-12-index-read-only-allow-delete-api/" class="article-date">
+  <time class="post-time" datetime="2019-07-19T12:50:35.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">19</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yyy/2019/07/19/解决Elasticsearch索引只读-——-FORBIDDEN-12-index-read-only-allow-delete-api/">解决Elasticsearch索引只读 —— FORBIDDEN/12/index read-only / allow delete (api)</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/yyy/categories/报错/">报错</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>解决Elasticsearch索引只读   ELK 日志 </p>
+<p>今天添加索引时发现kibana添加索引不生效,页面也没有报错，没有创建成功只是一闪而过。<br>另外发现各项目日志与当前时间差异很大,filebeat一直报错io timeout<br>具体报错如下:<br>filebeat无法给logstash传输数。<br>ip使用x代替<br>logstash/async.go:235 Failed to publish events caused by: read tcp 172.17.x.x:39092-&gt;172.17.x.x:5044: i/o timeout<br>logstash报错如下，logstash无法给es传输数据，es一直在拒绝所有的请求</p>
+<p>[INFO ][logstash.outputs.elasticsearch] Retrying individual bulk actions that failed or were rejected by the previous bulk request. {:count=&gt;1}<br>[INFO ][logstash.outputs.elasticsearch] retrying failed action with response code: 403 ({“type”=&gt;”cluster_block_exception”, “reason”=&gt;”blocked by: [FORBIDDEN/12/index read-only / allow delete (api)];”})<br>报错索引只读<br>index read-only / allow delete (api)];”}<br>es报错，es报错也是索引只读错误</p>
+        
+          <p class="article-more-link">
+            <a href="/yyy/2019/07/19/解决Elasticsearch索引只读-——-FORBIDDEN-12-index-read-only-allow-delete-api/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://19y.github.io/yyy/2019/07/19/解决Elasticsearch索引只读-——-FORBIDDEN-12-index-read-only-allow-delete-api/" data-id="cjya3xao5000hiouwz0nmlmt0" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/Elasticsearch/">Elasticsearch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/JAVA/">JAVA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/索引只读/">索引只读</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-git的基本操作" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/yyy/2019/07/19/git的基本操作/" class="article-date">
+  <time class="post-time" datetime="2019-07-19T12:40:36.000Z" itemprop="datePublished">
+    <span class="post-month">7月</span><br/>
+    <span class="post-day">19</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yyy/2019/07/19/git的基本操作/">git的基本操作</a>
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/yyy/categories/学习/">学习</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>git 工程的生成<br> git init</p>
+<p>git 添加缓存<br> git add ‘文件名或一些特定表达式如：*代表所有’</p>
+<p>git 添加的本地厂<br> git commit -m ‘ annotation’</p>
+<p>git 添加一个源 ，用来push 代码用的<br> git remote add origin[名字随便取]  url[链接]</p>
+<p>git 删除一个源<br> git remote remove origin[源名字]</p>
+<p>git push 提交代码<br> git push -u origin master  //第一此加u  why 看笔记</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://19y.github.io/yyy/2019/07/19/git的基本操作/" data-id="cjya3xanb0002iouw4nyhkj91" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/git/">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="post-Tomcat配置虚拟路径，使上传文件与服务器分离以及-Context-reloadable-true-的作用" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/yyy/2019/07/18/Tomcat配置虚拟路径，使上传文件与服务器分离以及-Context-reloadable-true-的作用/" class="article-date">
@@ -92,6 +213,10 @@
 
         <div>
           
+  <div class="article-category">
+    <a class="article-category-link" href="/yyy/categories/学习/">学习</a>
+  </div>
+
           
               
 
@@ -112,72 +237,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://19y.github.io/yyy/2019/07/18/Tomcat配置虚拟路径，使上传文件与服务器分离以及-Context-reloadable-true-的作用/" data-id="cjya1bv5o0000m8uwxewyf62s" class="article-share-link">分享</a>
+      <a data-url="https://19y.github.io/yyy/2019/07/18/Tomcat配置虚拟路径，使上传文件与服务器分离以及-Context-reloadable-true-的作用/" data-id="cjya3xan20000iouwv1kpjwzl" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/Context/">Context</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/reloadable/">reloadable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/tomcat/">tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/配置虚拟路径/">配置虚拟路径</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/Tomcat/">Tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/服务器/">服务器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/虚拟路径配置/">虚拟路径配置</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-hello-world" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/yyy/2019/07/18/hello-world/" class="article-date">
-  <time class="post-time" datetime="2019-07-18T08:33:39.951Z" itemprop="datePublished">
-    <span class="post-month">7月</span><br/>
-    <span class="post-day">18</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/yyy/2019/07/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://19y.github.io/yyy/2019/07/18/hello-world/" data-id="cjya1bv5w0002m8uwsyoon3pm" class="article-share-link">分享</a>
-      
-      
     </footer>
   </div>
   
@@ -227,9 +291,9 @@
     <h2 class="author">19Y</h2>
     <h3 class="description">长路漫漫为漫作伴</h3>
     <div class="count-box">
-      <a href="/yyy/archives"><div><strong>2</strong><br>文章</div></a>
-      <a href="/yyy/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/yyy/tags"><div><strong>4</strong><br>标签</div></a>
+      <a href="/yyy/archives"><div><strong>3</strong><br>文章</div></a>
+      <a href="/yyy/categories"><div><strong>2</strong><br>分类</div></a>
+      <a href="/yyy/tags"><div><strong>7</strong><br>标签</div></a>
     </div>
 
 
