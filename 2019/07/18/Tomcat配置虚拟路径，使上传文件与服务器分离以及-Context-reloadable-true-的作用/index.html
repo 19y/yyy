@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="19Y">
 <meta property="og:description" content="Tomcat配置虚拟路径，使上传文件与服务器分离2016年05月10日 15:52:16 bellus- 阅读数：20160  版权声明：知识共享原则。 https://blog.csdn.net/xiaoyu19910321/article/details/51363679 遇到问题介绍：项目中头像上传，上传图片到服务器。如果使用tomcat下的目录作为上传图片的路径，则每次重启服务器图片将消失">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-18T15:03:51.035Z">
+<meta property="og:updated_time" content="2019-07-19T02:24:02.608Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat配置虚拟路径，使上传文件与服务器分离以及&lt;Context reloadable=true&gt;的作用">
 <meta name="twitter:description" content="Tomcat配置虚拟路径，使上传文件与服务器分离2016年05月10日 15:52:16 bellus- 阅读数：20160  版权声明：知识共享原则。 https://blog.csdn.net/xiaoyu19910321/article/details/51363679 遇到问题介绍：项目中头像上传，上传图片到服务器。如果使用tomcat下的目录作为上传图片的路径，则每次重启服务器图片将消失">
@@ -43,25 +43,25 @@
     <h2 class="author">19Y</h2>
     <h3 class="description">长路漫漫为漫作伴</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>2</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>4</strong><br>标签</div></a>
+      <a href="/yyy/archives"><div><strong>2</strong><br>文章</div></a>
+      <a href="/yyy/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/yyy/tags"><div><strong>4</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
-          <a href="/" title="Home">
+          <a href="/yyy/" title="Home">
             <li>主页</li>
           </a>
         
-          <a href="/archives" title="Archives">
+          <a href="/yyy/archives/" title="Archives">
             <li>归档</li>
           </a>
         
-          <a href="/categories" title="Categories">
+          <a href="/yyy/categories/" title="Categories">
             <li>分类</li>
           </a>
         
-          <a href="/tags" title="Tags">
+          <a href="/yyy/tags/" title="Tags">
             <li>标签</li>
           </a>
         
@@ -103,7 +103,9 @@
       
         <p>Tomcat配置虚拟路径，使上传文件与服务器分离2016年05月10日 15:52:16 bellus- 阅读数：20160</p>
 <p> 版权声明：知识共享原则。 <a href="https://blog.csdn.net/xiaoyu19910321/article/details/51363679" target="_blank" rel="noopener">https://blog.csdn.net/xiaoyu19910321/article/details/51363679</a></p>
-<p>遇到问题介绍：项目中头像上传，上传图片到服务器。如果使用tomcat下的目录作为上传图片的路径，则每次重启服务器图片将消失<br>遇到问题：使用服务器物理磁盘的D:\upload路径存储文件，访问请求路径的不会映射到希望到的请求。<br>解决：可以使用tomcat的配置文件将某个请求 映射到 物理路径下 ，完成图片的回显。<br>具体操作：使用Tomcat虚拟路径<br>1.修改tomcat的配置文件<br>window环境</p>
+<p>遇到问题介绍：项目中头像上传，上传图片到服务器。如果使用tomcat下的目录作为上传图片的路径，则每次重启服务器图片将消失<br>遇到问题：使用服务器物理磁盘的D:\upload路径存储文件，访问请求路径的不会映射到希望到的请求。<br>解决：可以使用tomcat的配置文件将某个请求 映射到 物理路径下 ，完成图片的回显。<br>具体操作：使用Tomcat虚拟路径</p>
+<a id="more"></a>
+<p>1.修改tomcat的配置文件<br>window环境</p>
 <p>首先找到tomcat目录下conf目录下的server.xml文件</p>
 <p>在server.xml文件中找到<host></host></p>
 <p>然后在其中加上这<br>             <context path="/demo/file" docbase="D:\demo\File\file"></context><br>例如：</p>
@@ -133,7 +135,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://19y.github.io/yyy/2019/07/18/Tomcat配置虚拟路径，使上传文件与服务器分离以及-Context-reloadable-true-的作用/" data-id="cjy9avj9p00022kuwnh74sh40" class="article-share-link">分享</a>
+      <a data-url="https://19y.github.io/yyy/2019/07/18/Tomcat配置虚拟路径，使上传文件与服务器分离以及-Context-reloadable-true-的作用/" data-id="cjy9xev200001zguwoqq0pcax" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/Context/">Context</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/reloadable/">reloadable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/tomcat/">tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/配置虚拟路径/">配置虚拟路径</a></li></ul>
@@ -168,19 +170,19 @@
     <h2 class="blog-subtitle">19Y的博客</h2>
     <ul class="blog-link">
      
-          <a href="/" title="Home">
+          <a href="/yyy/" title="Home">
             <li>主页</li>
           </a>
         
-          <a href="/archives" title="Archives">
+          <a href="/yyy/archives/" title="Archives">
             <li>归档</li>
           </a>
         
-          <a href="/categories" title="Categories">
+          <a href="/yyy/categories/" title="Categories">
             <li>分类</li>
           </a>
         
-          <a href="/tags" title="Tags">
+          <a href="/yyy/tags/" title="Tags">
             <li>标签</li>
           </a>
         
@@ -205,7 +207,7 @@
 
     <div class="social-link">
       
-        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+        <a class="hvr-bounce-in" href="https://github.com/19y" target="_blank" title="Github">
           Github
         </a>
       
@@ -213,10 +215,6 @@
 
     <div class="friend-link">
       <h2>友情链接</h2>
-      
-        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
-          ShanaMaid
-        </a>
       
     </div>
   </div>
@@ -238,6 +236,9 @@
     
   </div>
 </footer>
+<audio loop="loop" autoplay="autoplay"  height="100" width="100">
+	<source src="/yyy/plugin/galmenu/fate.mp3" type="audio/mp3" />
+</audio>
     </div>
     
 

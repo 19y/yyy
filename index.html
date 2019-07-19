@@ -41,25 +41,25 @@
     <h2 class="author">19Y</h2>
     <h3 class="description">长路漫漫为漫作伴</h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>2</strong><br>文章</div></a>
-      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>4</strong><br>标签</div></a>
+      <a href="/yyy/archives"><div><strong>2</strong><br>文章</div></a>
+      <a href="/yyy/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/yyy/tags"><div><strong>4</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
-          <a href="/" title="Home">
+          <a href="/yyy/" title="Home">
             <li>主页</li>
           </a>
         
-          <a href="/archives" title="Archives">
+          <a href="/yyy/archives/" title="Archives">
             <li>归档</li>
           </a>
         
-          <a href="/categories" title="Categories">
+          <a href="/yyy/categories/" title="Categories">
             <li>分类</li>
           </a>
         
-          <a href="/tags" title="Tags">
+          <a href="/yyy/tags/" title="Tags">
             <li>标签</li>
           </a>
         
@@ -103,37 +103,16 @@
       
         <p>Tomcat配置虚拟路径，使上传文件与服务器分离2016年05月10日 15:52:16 bellus- 阅读数：20160</p>
 <p> 版权声明：知识共享原则。 <a href="https://blog.csdn.net/xiaoyu19910321/article/details/51363679" target="_blank" rel="noopener">https://blog.csdn.net/xiaoyu19910321/article/details/51363679</a></p>
-<p>遇到问题介绍：项目中头像上传，上传图片到服务器。如果使用tomcat下的目录作为上传图片的路径，则每次重启服务器图片将消失<br>遇到问题：使用服务器物理磁盘的D:\upload路径存储文件，访问请求路径的不会映射到希望到的请求。<br>解决：可以使用tomcat的配置文件将某个请求 映射到 物理路径下 ，完成图片的回显。<br>具体操作：使用Tomcat虚拟路径<br>1.修改tomcat的配置文件<br>window环境</p>
-<p>首先找到tomcat目录下conf目录下的server.xml文件</p>
-<p>在server.xml文件中找到<host></host></p>
-<p>然后在其中加上这<br>             <context path="/demo/file" docbase="D:\demo\File\file"></context><br>例如：</p>
-<host name="localhost" appbase="webapps" unpackwars="true" autodeploy="true">
-
-<pre><code>&lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs&quot;
-        prefix=&quot;localhost_access_log.&quot; suffix=&quot;.txt&quot;
-        pattern=&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&quot; /&gt;</code></pre><!-- 下面两条主要是tomcat转发图片请求到相应的电脑物理磁盘位置 -->
-<p><context path="/dajean/uploadpng/" docbase="D:\setup\dajean\uploadpng\"></context></p>
-<pre><code>&lt;/Host&gt;</code></pre><p>tomcat在的请求一般为<a href="http://localhost:8080/demo/file/abc.jpg" target="_blank" rel="noopener">http://localhost:8080/demo/file/abc.jpg</a><br>配置完重启之后，该请求会自动跳转到物理路径D:\demo\File\file下查找。<br>会访问本机的D:\demo\File\file\abc.jpg</p>
-<p>有效解决了存储路径与tomcat路径的分离。</p>
-<context reloadable="true">  
-
-<p>为了在开发时，让tomcat能够自动重新加载，我们修改过的代码和配置，需要对Tomcat的context.xml文件进行设置。<br>在标签中，加上reloadable属性，并且将值设为true</p>
-<context reloadable="true">  
-    <!--注意： reloadable设为true，目的是为了方便开发阶段， 它会影响tomcat性能；当在正式部署服务时，需要改成false -->  
-1
-2
-重启Tomcat时或（tomcat服务开启，重新部署项目时），出现如下异常：
-
-<p>信息: Illegal access: this web application instance has been stopped already.  Could not load java.net.BindException.  The eventual following stack trace is caused by an error thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access, and has no functional impact.<br>java.lang.IllegalStateException<br>org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1272)<br> at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1232)<br> at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:320)<br> at com.mysql.jdbc.CommunicationsException.<init>(CommunicationsException.java:161)<br> at com.mysql.jdbc.MysqlIO.send(MysqlIO.java:2759)<br> at com.mysql.jdbc.MysqlIO.quit(MysqlIO.java:1410)<br> at com.mysql.jdbc.Connection.realClose(Connection.java:4947)<br> at com.mysql.jdbc.Connection.cleanup(Connection.java:2063)<br> at com.mysql.jdbc.Connection.finalize(Connection.java:3403)<br> at java.lang.ref.Finalizer.invokeFinalizeMethod(Native Method)<br>at java.lang.ref.Finalizer.runFinalizer(Finalizer.java:83)<br>at java.lang.ref.Finalizer.access$100(Finalizer.java:14)</init></p>
-<p>原因是：tomcat重新装载web应用程序失败导致的。当应用程序卸载时，并不会关闭所有的线程。当tomcat已经关闭了其类加载器后，一些线程依然会继续运行，这样就导致出错。不过这个不影响正常使用，不管影响不影响，看到异常信息就不顺眼。</p>
-<p>解决方案：修改tomcat目录下的context.xml,找到<context>标签，把reloadble的属性值设为：reloadable=”false”，即<context reloadable="”false”">。</context></context></p>
-<hr>
-<p>作者：kekeair-zhang<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/ke_zhang_123/article/details/78537652" target="_blank" rel="noopener">https://blog.csdn.net/ke_zhang_123/article/details/78537652</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
-</context></context></host>
+<p>遇到问题介绍：项目中头像上传，上传图片到服务器。如果使用tomcat下的目录作为上传图片的路径，则每次重启服务器图片将消失<br>遇到问题：使用服务器物理磁盘的D:\upload路径存储文件，访问请求路径的不会映射到希望到的请求。<br>解决：可以使用tomcat的配置文件将某个请求 映射到 物理路径下 ，完成图片的回显。<br>具体操作：使用Tomcat虚拟路径</p>
+        
+          <p class="article-more-link">
+            <a href="/yyy/2019/07/18/Tomcat配置虚拟路径，使上传文件与服务器分离以及-Context-reloadable-true-的作用/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://19y.github.io/yyy/2019/07/18/Tomcat配置虚拟路径，使上传文件与服务器分离以及-Context-reloadable-true-的作用/" data-id="cjy9avj9p00022kuwnh74sh40" class="article-share-link">分享</a>
+      <a data-url="https://19y.github.io/yyy/2019/07/18/Tomcat配置虚拟路径，使上传文件与服务器分离以及-Context-reloadable-true-的作用/" data-id="cjy9xev200001zguwoqq0pcax" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/Context/">Context</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/reloadable/">reloadable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/tomcat/">tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yyy/tags/配置虚拟路径/">配置虚拟路径</a></li></ul>
@@ -196,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://19y.github.io/yyy/2019/07/18/hello-world/" data-id="cjy9avj9i00002kuwwhedj8vq" class="article-share-link">分享</a>
+      <a data-url="https://19y.github.io/yyy/2019/07/18/hello-world/" data-id="cjy9xev270003zguwmjcxvjj3" class="article-share-link">分享</a>
       
       
     </footer>
@@ -220,19 +199,19 @@
     <h2 class="blog-subtitle">19Y的博客</h2>
     <ul class="blog-link">
      
-          <a href="/" title="Home">
+          <a href="/yyy/" title="Home">
             <li>主页</li>
           </a>
         
-          <a href="/archives" title="Archives">
+          <a href="/yyy/archives/" title="Archives">
             <li>归档</li>
           </a>
         
-          <a href="/categories" title="Categories">
+          <a href="/yyy/categories/" title="Categories">
             <li>分类</li>
           </a>
         
-          <a href="/tags" title="Tags">
+          <a href="/yyy/tags/" title="Tags">
             <li>标签</li>
           </a>
         
@@ -257,7 +236,7 @@
 
     <div class="social-link">
       
-        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+        <a class="hvr-bounce-in" href="https://github.com/19y" target="_blank" title="Github">
           Github
         </a>
       
@@ -265,10 +244,6 @@
 
     <div class="friend-link">
       <h2>友情链接</h2>
-      
-        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
-          ShanaMaid
-        </a>
       
     </div>
   </div>
@@ -290,6 +265,9 @@
     
   </div>
 </footer>
+<audio loop="loop" autoplay="autoplay"  height="100" width="100">
+	<source src="/yyy/plugin/galmenu/fate.mp3" type="audio/mp3" />
+</audio>
     </div>
     
 
